@@ -1,0 +1,297 @@
+/* COLORS ***************************************************/
+:root {
+  --top: #0a0f13;
+  --dark: #141c22;
+  --light: #1c262f;
+  --text: #f9f9f9;
+  --accent: #f7df1d;
+  --nav-link-bg: #28313a;
+  --code-block-text: #fdf3a2;
+  --toc-divider: rgb(46, 44, 59);
+}
+
+/* MAIN SETTINGS ********************************************/
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: Segoe UI, sans-serif;
+  line-height: 1.5rem;
+  background-color: var(--dark);
+}
+
+/* LAYOUT ****************************************************
+The general layout of the page:
+- Top bar
+- Navigation tree
+- Main content
+- Table of contents
+*/
+
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 48px;
+  width: 100%;
+  z-index: 1;
+}
+
+.nav,
+.main,
+.toc {
+  min-height: calc(100vh - 48px);
+  margin-top: 48px;
+}
+
+.nav {
+  position: fixed;
+  left: 0;
+  width: 300px;
+}
+
+.main {
+  position: absolute;
+  left: 300px;
+  width: calc(100% - 300px - 300px);
+}
+
+.toc {
+  position: fixed;
+  left: calc(100% - 300px);
+  width: 300px;
+}
+
+/* LAYOUT ELEMENTS */
+
+/* TOP **************************************************************/
+.top {
+  background-color: var(--top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.logo {
+  color: var(--accent);
+}
+
+.top-sandwich {
+  display: none;
+}
+
+.logo,
+.top-sandwich {
+  padding: 0 16px;
+  font-size: 1.8rem;
+  line-height: normal;
+}
+
+.top-ul {
+  display: flex;
+  margin: 0;
+  padding: 0 16px;
+}
+
+.top-li {
+  list-style-type: none;
+}
+
+.top-a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 16px;
+}
+
+.top a:hover {
+  color: var(--accent);
+}
+
+/* NAV **************************************************************/
+.nav {
+  background-color: var(--light);
+  padding: 12px;
+}
+
+.nav-menu {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+  background: var(--nav-link-bg);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.current {
+  background: var(--dark);
+  border-radius: 4px;
+}
+
+/* MAIN *************************************************************/
+.main {
+  padding: 12px 24px;
+}
+
+/* CONTENT ***********************************************************/
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+/* CONTENT SECTION ***************************************************/
+.content-section {
+  margin-bottom: 24px;
+}
+
+.content-section-title-main {
+  font-size: 2.8rem;
+}
+
+.content-section-title {
+  font-size: 1.8rem;
+}
+
+.content-section-title-main,
+.content-section-title {
+  margin: 0 0 16px;
+  line-height: normal;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent);
+  border-radius: 2px;
+}
+
+#js-logo {
+  height: 100px;
+}
+
+.content-section ul {
+  padding: 0 16px;
+}
+
+.content-section-a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.content-section-a:hover {
+  text-decoration: underline;
+}
+
+/* CODE ******************************************************************/
+code {
+  display: block;
+  padding: 12px;
+  margin: 8px 0px;
+  background-color: var(--light);
+  color: var(--code-block-text);
+}
+
+pre {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5em;
+}
+
+.code-inline {
+  padding: 2px 4px;
+  border-radius: 1px;
+  font-family: monospace;
+  background-color: var(--light);
+  color: var(--code-block-text);
+}
+
+/* TOC ******************************************************************/
+.toc {
+  background-color: var(--dark);
+  padding: 12px 0;
+}
+
+.toc-ul {
+  padding: 0 0 0 12px;
+  margin: 0;
+  border-left: 1px solid var(--toc-divider);
+}
+
+.toc-li {
+  list-style-type: none;
+  font-size: 0.8rem;
+  margin: 4px 0;
+}
+
+.toc-a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.toc-a:hover {
+  color: var(--accent);
+}
+
+/* MEDIA ***************************************************************/
+
+@media screen and (max-width: 1280px) {
+  /* TOC is not displayed */
+  .toc {
+    display: none;
+  }
+
+  /* MAIN takes the space of TOC */
+  .main {
+    width: calc(100% - 300px);
+  }
+}
+
+@media screen and (max-width: 920px) {
+  /* NAV is not displayed */
+  .nav {
+    display: none;
+  }
+
+  /* MAIN takes 100% */
+  .main {
+    width: 100%;
+    min-width: 500px;
+    left: 0;
+  }
+
+  /* Buttons in TOP are hidden */
+  .top ul {
+    display: none;
+  }
+
+  /* SANDWICH is displayed instead of buttons */
+  .top-sandwich {
+    display: inline;
+  }
+
+  .top-sandwich:hover {
+    color: var(--accent);
+    cursor: pointer;
+  }
+}
